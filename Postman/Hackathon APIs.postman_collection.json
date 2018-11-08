@@ -1,0 +1,1683 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Hackathon APIs",
+		"_postman_id": "4b0f360f-291f-db5a-a098-8d731f8bd3b4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST /tasks (crm)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/customer-management/tasks",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"62304\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"Coaching Task\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /tasks (crm)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Body matches string\"] = responseBody.has(\"test details\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/customer-management/tasks/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"Person\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"Person\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-08-07T10:40:45\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"CFDO Test 10:50\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /risk-types (risk-limit-management)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"Counterparty Limit\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/models/risk-limit-checks/risk-types",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /risk-types/cntparty/limit-structures (risk-limit-management)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"Counterparty Limit\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/models/risk-limit-checks/risk-types/cntprty/limit-structures/179801",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET/accounts/balances (account-management)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"BOOK\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{sandbox-host}}/accounts/20071316/balances?balance_type=Book",
+					"host": [
+						"{{sandbox-host}}"
+					],
+					"path": [
+						"accounts",
+						"20071316",
+						"balances"
+					],
+					"query": [
+						{
+							"key": "balance_type",
+							"value": "Book",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET/accounts/bookings (account-management)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"DEBIT\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{sandbox-host}}/accounts/20071316/bookings?from_date=2001-05-10&to_date=2018-07-28&offset=0&limit=2000",
+					"host": [
+						"{{sandbox-host}}"
+					],
+					"path": [
+						"accounts",
+						"20071316",
+						"bookings"
+					],
+					"query": [
+						{
+							"key": "from_date",
+							"value": "2001-05-10",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "to_date",
+							"value": "2018-07-28",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "offset",
+							"value": "0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "limit",
+							"value": "2000",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /mortage-prolongation/financing-contracts (loans)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"Ottiger Beat Mortgage Limit CHF\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/loans/mortgage-prolongation/financing-contracts/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /mortage-prolongation/financing-contracts/1810001 (loans)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"Ottiger Beat Global Limit CHF\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/loans/mortgage-prolongation/financing-contracts/1810001",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": "https://avaloq-mortgage-prolongation-avaloq-api-testbed-mdb.oc.sits.avaloq.net/loans/mortgage-prolongation/financing-contracts/1810001 "
+			},
+			"response": []
+		},
+		{
+			"name": "GET /loans/interest-pricing (loans)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"interestRate\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{sandbox-host}}/loans/interest-pricing/interest-rate?loan_asset_id=25051&loan_amount=1000000.0&reference_date=2018-04-04&business_partner_id=455676&container_id=168804&duration_years=3.0&currency_id=3942",
+					"host": [
+						"{{sandbox-host}}"
+					],
+					"path": [
+						"loans",
+						"interest-pricing",
+						"interest-rate"
+					],
+					"query": [
+						{
+							"key": "loan_asset_id",
+							"value": "25051",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "loan_amount",
+							"value": "1000000.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "reference_date",
+							"value": "2018-04-04",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "business_partner_id",
+							"value": "455676",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "container_id",
+							"value": "168804",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "duration_years",
+							"value": "3.0",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "currency_id",
+							"value": "3942",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /payment-management direct debits (payments)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/payments/payment-management/accounts/168788/direct-debits/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /payment-management standing orders (payments)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/payments/payment-management/accounts/20002602/standing-orders",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /payment-initiation/payments (payments)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/payments/payment-initiation/payments/7780470",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /payment-initiation (payments)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/payments/payment-initiation/payments",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"instructionId\": \"testInstructionId1351530885\",\r\n    \"endToEndId\": \"testEndToEndId776542673\",\r\n    \"instructedAmount\": {\r\n        \"amount\": \"123.00\",\r\n        \"currency\": \"CHF\"\r\n    },\r\n    \"debtorAgent\": {\r\n        \"schemeName\": \"BICFI\",\r\n        \"id\": \"PTSBCHMM\"\r\n    },\r\n    \"debtorAccount\": {\r\n        \"schemeName\": \"IBAN\",\r\n        \"id\": \"CH6188880100152642001\"\r\n    },\r\n    \"creditorAgent\": {\r\n        \"schemeName\": \"BICFI\",\r\n        \"id\": \"CRESCHZZ80A\"\r\n    },\r\n    \"creditorAccount\": {\r\n        \"schemeName\": \"IBAN\",\r\n        \"id\": \"CH4504835225569854455\"\r\n    },\r\n    \"remittanceInformation\": {\r\n        \"unstructured\": \"test_remittanceInformationUnstructured\",\r\n        \"reference\": \"test_reference1233\"\r\n    }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /corporate-action-events (market operations)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/market-operations/corporate-action-events/{{corporate-actions-event-id}}/affected-positions",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /corporate-action-events (market operations)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{sandbox-host}}/market-operations/corporate-action-events?ongoing=true&portfolio_id={{corporate-actions-portfolio-id}}",
+					"host": [
+						"{{sandbox-host}}"
+					],
+					"path": [
+						"market-operations",
+						"corporate-action-events"
+					],
+					"query": [
+						{
+							"key": "ongoing",
+							"value": "true",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "portfolio_id",
+							"value": "{{corporate-actions-portfolio-id}}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /corporate-actions decision (market operations)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/market-operations/corporate-action-events/{{corporate-actions-event-id}}/affected-positions/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"<saml2:Assertion xmlns:saml2='urn:oasis:names:tc:SAML:2.0:assertion' ID='AWS_TUTORIAL' IssueInstant='2017-09-07T17:50:49.004Z' Version='2.0'><saml2:Issuer>MedusaIDP</saml2:Issuer><saml2:Subject><saml2:NameID Format='urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName'>api_testbed_aws_user</saml2:NameID></saml2:Subject><saml2:Conditions NotBefore='2017-09-07T17:50:49.004Z' NotOnOrAfter='2020-09-07T18:07:29.004Z'/><saml2:AttributeStatement><saml2:Attribute Name='BusinessUnitID'><saml2:AttributeValue>9002</saml2:AttributeValue></saml2:Attribute><saml2:Attribute Name='AfsAuthenticationLevel'><saml2:AttributeValue/></saml2:Attribute><saml2:Attribute Name='RolesWithTimeouts'><saml2:AttributeValue>InternalClient</saml2:AttributeValue></saml2:Attribute></saml2:AttributeStatement><saml2:AuthnStatement AuthnInstant='2017-09-07T17:50:49.005Z'><saml2:AuthnContext><saml2:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:X509</saml2:AuthnContextClassRef></saml2:AuthnContext></saml2:AuthnStatement></saml2:Assertion>\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"removeDecision\": \"false\",\n    \"decisionParameters\": [\n        {\n            \"key\": \"perc1\",\n            \"value\": \"50\"\n        },\n        {\n            \"key\": \"perc3\",\n            \"value\": \"0\"\n        },\n        {\n            \"key\": \"perc2\",\n            \"value\": \"50\"\n        },\n        {\n            \"key\": \"perc5\",\n            \"value\": \"0\"\n        },\n        {\n            \"key\": \"perc4\",\n            \"value\": \"0\"\n        },\n        {\n            \"key\": \"perc7\",\n            \"value\": \"0\"\n        },\n        {\n            \"key\": \"perc6\",\n            \"value\": \"0\"\n        },\n        {\n            \"key\": \"medium\",\n            \"value\": \"8\"\n        },\n        {\n            \"key\": \"do_block_on_appl_decsn\",\n            \"value\": \"N\"\n        },\n        {\n            \"key\": \"title2ro\",\n            \"value\": \"SECU\"\n        },\n        {\n            \"key\": \"title1ro\",\n            \"value\": \"CASH\"\n        }\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /asset-allocations (investment mgmt)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"TAA_BAL\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/investment-management/asset-allocations/TAA_BAL",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /portfolios/mwrr (investment mgmt)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"2018-01-28\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{sandbox-host}}/investment-management/portfolios/168804/mwrr?end_date=2018-01-28&periodicity=once&start_date=2017-12-28",
+					"host": [
+						"{{sandbox-host}}"
+					],
+					"path": [
+						"investment-management",
+						"portfolios",
+						"168804",
+						"mwrr"
+					],
+					"query": [
+						{
+							"key": "end_date",
+							"value": "2018-01-28",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "periodicity",
+							"value": "once",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "start_date",
+							"value": "2017-12-28",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /portfolios/ (investment mgmt)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"Strässler\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/investment-management/portfolios/RS.01",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /portfolios/positions (investment mgmt)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Body matches string\"] = responseBody.has(\"Richemont\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/investment-management/portfolios/RS.01/positions",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"mpf\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"dd\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"feecr\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"card\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-07-12T08:49:27.414\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"before update CFDO\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /party (party)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Body matches string\"] = responseBody.has(\"test details\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{sandbox-host}}/customer-graph?customer_id=62201&customer_type=1",
+					"host": [
+						"{{sandbox-host}}"
+					],
+					"path": [
+						"customer-graph"
+					],
+					"query": [
+						{
+							"key": "customer_id",
+							"value": "62201",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "customer_type",
+							"value": "1",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"Person\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"Person\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-08-07T10:40:45\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"CFDO Test 10:50\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /invoices (finance)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/finance/invoice-management/invoices",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /invoices (finance)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/finance/invoice-management/invoices",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"creditorId\": \"ALLIANZ\",\r\n    \"VATNumber\": \"CHE-109.616.107\",\r\n    \"creationDate\": \"2018-05-02\",\r\n    \"paymentDate\": \"2018-06-01\",\r\n    \"currency\": \"CHF\",\r\n    \"externalReferenceNo\": \"EXTL_ALLIANZ_724815254\",\r\n    \"internalReferenceNo\": \"INTL_ALLIANZ_-1730053700\",\r\n    \"paymentReferenceNo\": \"PAY_ALLIANZ_159971668\",\r\n    \"invoiceAmount\": {\r\n        \"amount\": \"1000\",\r\n        \"currency\": \"CHF\"\r\n    },\r\n    \"expenseInformation\": [\r\n        {\r\n            \"expenseAccount\": \"315.00.00.10\",\r\n            \"bookingText\": \"Booking for ALLIANZ\",\r\n            \"VATCode\": \"GOODS\",\r\n            \"chargedAmount\": \"120\",\r\n            \"costCentre\": [\r\n                {\r\n                    \"costCentre\": \"ALCC\",\r\n                    \"assignedAmount\": \"750\"\r\n                },\r\n                {\r\n                    \"costCentre\": \"BOFF\",\r\n                    \"assignedAmount\": \"250\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /creditors (finance)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/finance/creditor-management/creditors",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"creditorId\": \"ALLIANZ_1250747774\",\r\n    \"companyName\": \"Allianz Suisse\",\r\n    \"personType\": \"PersonLegal\",\r\n    \"domicile\": {\r\n        \"street\": \"Richtiplatz\",\r\n        \"streetNumber\": \"1\",\r\n        \"zipCode\": \"8304\",\r\n        \"city\": \"Wallisellen\",\r\n        \"country\": \"CH\"\r\n    },\r\n    \"VATNumber\": \"CHE-109.616.107\",\r\n    \"cashDiscountTerm\": 10.0,\r\n    \"cashDiscountRate\": 2.0,\r\n    \"paymentInstructions\": [\r\n        {\r\n            \"effectiveDateFrom\": \"2011-01-01\",\r\n            \"currency\": \"CHF\",\r\n            \"destinationCashAccount\": \"1761358\",\r\n            \"destinationBank\": \"ZKB\"\r\n        },\r\n        {\r\n            \"effectiveDateFrom\": \"2011-01-01\",\r\n            \"currency\": \"EUR\",\r\n            \"destinationCashAccount\": \"5113.00.02\",\r\n            \"destinationBank\": \"ZKB\"\r\n        }\r\n    ]\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /creditors (finance)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"Body matches string\"] = responseBody.has(\"CH5200230856876070092\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{sandbox-host}}/finance/creditor-management/creditors?creditor_id=ALLIANZ",
+					"host": [
+						"{{sandbox-host}}"
+					],
+					"path": [
+						"finance",
+						"creditor-management",
+						"creditors"
+					],
+					"query": [
+						{
+							"key": "creditor_id",
+							"value": "ALLIANZ",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "SAML_ASSERTION=\"{{saml}}\"",
+						"description": "",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"Person\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"Person\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-08-07T10:40:45\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"CFDO Test 10:50\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /roboadvisory/accounts (robo advisor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var loc = postman.getResponseHeader(\"location\");",
+							"var accountId = loc.substring(loc.length-13);",
+							"postman.setEnvironmentVariable(\"account-id\", accountId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/wholesale-trading/robo-advisor-accounts/accounts/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"businessPartnerId\": \"BAI\",\r\n    \"roboAdvisorId\": \"robo_advs_tw\",\r\n    \"baseCurrency\": \"CHF\",\r\n    \"referenceMoneyAccountId\": \"10010271.2001\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /roboadvisory/accounts (robo advisor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/wholesale-trading/robo-advisor-accounts/accounts/{{account-id}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"Person\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"Person\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-08-07T10:40:45\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"CFDO Test 10:50\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /roboadvisory/accounts/positions (robo advisor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/wholesale-trading/robo-advisor-accounts/accounts/{{account-id}}/positions",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"Person\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"Person\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-08-07T10:40:45\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"CFDO Test 10:50\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /roboadvisory/accounts/cash-investment (robo advisor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var loc = postman.getResponseHeader(\"location\");",
+							"var cashInvestmentId = loc.substring(loc.length-12);",
+							"postman.setEnvironmentVariable(\"cash-investment-id\", cashInvestmentId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/wholesale-trading/robo-advisor-accounts/accounts/{{account-id}}/cash-investments",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transferAmount\": {\r\n    \t\"amount\": \"10000\",\r\n\t\t\"currency\": \"CHF\"\r\n    }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /roboadvisory/accounts/cash-investments (robo advisor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/wholesale-trading/robo-advisor-accounts/accounts/{{account-id}}/cash-investments/{{cash-investment-id}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"responsible\": {\r\n        \"id\": \"26701\",\r\n        \"name\": \"test\",\r\n        \"type\": \"Person\"\r\n    },\r\n    \"related\": {\r\n        \"main\": [\r\n            {\r\n                \"id\": \"62201\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ],\r\n        \"all\": [\r\n            {\r\n                \"id\": \"131619\",\r\n                \"type\": \"Person\"\r\n            },\r\n            {\r\n                \"id\": \"62304\",\r\n                \"type\": \"Person\"\r\n            }\r\n        ]\r\n    },\r\n    \"dueDate\": \"2018-08-07T10:40:45\",\r\n    \"taskArea\": \"mktng\",\r\n    \"taskType\": \"mktng_brand\",\r\n    \"priority\": \"low\",\r\n    \"subject\": \"CFDO Test 10:50\",\r\n    \"details\": \"test details\"\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /roboadvisory/securities-orders (robo advisor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var loc = postman.getResponseHeader(\"location\");",
+							"var cashInvestmentId = loc.substring(loc.length-12);",
+							"postman.setEnvironmentVariable(\"securities-order-id\", cashInvestmentId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/wholesale-trading/securities-orders/orders",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountId\": \"{{account-id}}\",\r\n    \"allocations\": [\r\n        \r\n    ],\r\n    \"orderInstruction\": {\r\n        \"side\": \"Buy\",\r\n        \"orderQuantity\": 50.0,\r\n        \"instrument\": {\r\n            \"instrumentId\": \"CH0038863350\"\r\n        }\r\n    }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /roboadvisory/securities-orders (robo advisor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var loc = postman.getResponseHeader(\"location\");",
+							"var cashInvestmentId = loc.substring(loc.length-12);",
+							"postman.setEnvironmentVariable(\"securities-order-id\", cashInvestmentId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/wholesale-trading/securities-orders/orders/{{securities-order-id}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountId\": \"{{account-id}}\",\r\n    \"allocations\": [\r\n        \r\n    ],\r\n    \"orderInstruction\": {\r\n        \"side\": \"Buy\",\r\n        \"orderQuantity\": 50.0,\r\n        \"instrument\": {\r\n            \"instrumentId\": \"CH0038863350\"\r\n        }\r\n    }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET /roboadvisory/transactions (robo advisor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var loc = postman.getResponseHeader(\"location\");",
+							"var cashInvestmentId = loc.substring(loc.length-12);",
+							"postman.setEnvironmentVariable(\"securities-order-id\", cashInvestmentId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "{{sandbox-host}}/wholesale-trading/securities-orders/transactions/?account_id={{account-id}}",
+					"host": [
+						"{{sandbox-host}}"
+					],
+					"path": [
+						"wholesale-trading",
+						"securities-orders",
+						"transactions",
+						""
+					],
+					"query": [
+						{
+							"key": "account_id",
+							"value": "{{account-id}}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountId\": \"{{account-id}}\",\r\n    \"allocations\": [\r\n        \r\n    ],\r\n    \"orderInstruction\": {\r\n        \"side\": \"Buy\",\r\n        \"orderQuantity\": 50.0,\r\n        \"instrument\": {\r\n            \"instrumentId\": \"CH0038863350\"\r\n        }\r\n    }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /roboadvisory/securities-orders (robo advisor)",
+			"request": {
+				"url": "{{sandbox-host}}/wholesale-trading/securities-orders/orders/{{securities-order-id}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{sandbox-jwt}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountId\": \"{{account-id}}\",\r\n    \"allocations\": [\r\n        \r\n    ],\r\n    \"orderInstruction\": {\r\n        \"side\": \"Buy\",\r\n        \"orderQuantity\": 50.0,\r\n        \"instrument\": {\r\n            \"instrumentId\": \"CH0038863350\"\r\n        }\r\n    }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /roboadvisory/accounts/cash-withdrawal (robo advisor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;",
+							"var loc = postman.getResponseHeader(\"location\");",
+							"var cashInvestmentId = loc.substring(loc.length-12);",
+							"postman.setEnvironmentVariable(\"cash-investment-id\", cashInvestmentId);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/wholesale-trading/robo-advisor-accounts/accounts/{{account-id}}/cash-withdrawals/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transferAmount\": {\r\n    \t\"amount\": \"10000\",\r\n\t\t\"currency\": \"CHF\"\r\n    }\r\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /roboadvisory/accounts (robo advisor)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{sandbox-host}}/wholesale-trading/robo-advisor-accounts/accounts/{{account-id}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt-token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

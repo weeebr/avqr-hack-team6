@@ -1,0 +1,43 @@
+<div>
+
+  <div *ngIf="undefined === stock">Loading...</div>
+  <div *ngIf="undefined !== stock">
+
+    <h3>{{asset.assetName}}</h3>
+    <div class="row">
+      <div class="col-xs-4">
+        <table class="table table-responsive table-condensed">
+          <tbody>
+          <tr class="{{stockClass}}">
+            <td>Asset ID:</td>
+            <td>{{asset.assetId}}</td>
+          </tr>
+          <tr class="{{stockClass}}">
+            <td>ISIN:</td>
+            <td>{{asset.assetIsin}}</td>
+          </tr>
+          <tr class="{{stockClass}}">
+            <td>Units:</td>
+            <td>{{asset.units}}</td>
+          </tr>
+          <tr *ngIf="null !== stock" class="{{stockClass}}">
+            <td>Last:</td>
+            <td>{{stock.last.amount}} {{stock.last.currency}}</td>
+          </tr>
+          <tr *ngIf="null !== stock" class="{{stockClass}}">
+            <td>Change:</td>
+            <td>{{stock.changePercent}}%</td>
+          </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+      <div class="col-xs-8">
+
+        <img *ngIf="null !== stock" [src]="stock.chartUrl" class="img-responsive"/>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>

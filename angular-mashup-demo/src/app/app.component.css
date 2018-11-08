@@ -1,0 +1,8 @@
+
+.jwt-valid {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.jwt-invalid {
+  border-left: 5px solid #a94442; /* red */
+}

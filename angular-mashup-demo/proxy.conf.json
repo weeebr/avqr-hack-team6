@@ -1,0 +1,10 @@
+{
+  "/shares": {
+    "target": "https://www.boerse-berlin.com/index.php/Shares",
+    "secure": true,
+    "pathRewrite": {
+      "^/shares": ""
+    },
+    "changeOrigin": true
+  }
+}

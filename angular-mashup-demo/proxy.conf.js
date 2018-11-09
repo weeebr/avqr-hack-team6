@@ -8,7 +8,7 @@ var proxyConfig = [
   },
   {
     context: '/testbed/investment-management',
-    target: 'https://investment-management-avaloq-api-testbed-mdb-staging.oc.sits.avaloq.net',
+    target: 'https://api-xbrjd.emea.sandbox-test.avaloq.com',
     secure: false,
     changeOrigin: true,
     pathRewrite: {
@@ -17,7 +17,16 @@ var proxyConfig = [
   },
   {
     context: '/sandbox/investment-management',
-    target: 'https://api-eix9l.emea.sandbox-dev.avaloq.com',
+    target: 'https://api-xbrjd.emea.sandbox-test.avaloq.com',
+    secure: false,
+    changeOrigin: true,
+    pathRewrite: {
+      "^/sandbox": ""
+    }
+  },
+  {
+    context: '/sandbox/accounts',
+    target: 'https://api-xbrjd.emea.sandbox-test.avaloq.com',
     secure: false,
     changeOrigin: true,
     pathRewrite: {

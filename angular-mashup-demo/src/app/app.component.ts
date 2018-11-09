@@ -20,10 +20,11 @@ export class AppComponent {
   };
 
   private submitted = false;
-  private hasValidJwt = false;
+  private hasValidJwt = true;
 
   onSubmit() {
     this.submitted = true;
+    this.jwtService.checkValidSandboxToken(this.jwtService.getJwtToken());
   }
 
   constructor(private jwtService: JwtService, @Inject(SESSION_STORAGE) private storage: StorageService) {

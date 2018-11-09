@@ -5,7 +5,7 @@
   </div>
 
   <div *ngIf="!hasValidJwt">
-    <form class="form-horizontal" #jwtForm="ngForm" (ngSubmit)="onSubmitJwt()">
+    <form class="form-horizontal" #jwtForm="ngForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="jwt" class="col-sm-2 control-label">JWT Token</label>
         <div class="col-sm-10">

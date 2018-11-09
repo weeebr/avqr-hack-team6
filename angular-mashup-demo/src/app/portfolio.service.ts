@@ -14,7 +14,7 @@ export class PortfolioService {
 
   getPositionsURL(portfolioId: string) : string {
     //var URL = `/investment-management/portfolios/${portfolioId}/positions`;
-    var URL = '/testbed' + `/investment-management/portfolios/${portfolioId}/positions`
+    var URL = '/sandbox' + `/accounts/${portfolioId}/balances`
 
     return URL
   }
@@ -35,6 +35,9 @@ export class PortfolioService {
     console.log("URL: " + this.getPositionsURL(portfolioId));
 
     var obs = <Observable<any>> this.http.get(this.getPositionsURL(portfolioId), {headers: headers, params: params});
-    return obs.pipe(map(data => data.filter(asset => asset['assetType'] == 'shab')))
+    return obs.pipe(map(data => { 
+      console.log(data);
+      //data.filter(asset => asset['assetType'] == 'shab')
+  }))
   }
 }

@@ -56,7 +56,15 @@ export class AppComponent {
 
     [].forEach.call(els, function(el) {
       el.addEventListener("click", function() {
-        el.parentElement.style.width = '400px';
+        if(el.innerHTML === "View More") {
+        el.parentElement.querySelectorAll('.more-data')[0].style.display = 'flex';
+        el.parentElement.style.height = '400px';
+        el.innerHTML = "View Less";
+      } else {
+        el.parentElement.querySelectorAll('.more-data')[0].style.display = 'none';
+        el.parentElement.style.height = '300px';
+        el.innerHTML = "View More";
+      }
       }, false);
     });
 

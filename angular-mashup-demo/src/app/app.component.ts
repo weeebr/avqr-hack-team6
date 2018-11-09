@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { JwtService } from './jwt.service';
 import { Inject, Injectable } from '@angular/core';
@@ -27,7 +27,13 @@ export class AppComponent {
     this.jwtService.checkValidSandboxToken(this.jwtService.getJwtToken());
   }
 
+  onInit() {
+    
+  }
+
+
   constructor(private jwtService: JwtService, @Inject(SESSION_STORAGE) private storage: StorageService) {
+    
   }
 
   async delay(ms: number) {
@@ -46,6 +52,14 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    var els = document.querySelectorAll(".tile a");
+
+    [].forEach.call(els, function(el) {
+      el.addEventListener("click", function() {
+        el.parentElement.style.width = '400px';
+      }, false);
+    });
+
     if (environment.environment == "testbed") {
       this.model.jwt = this.jwtService.createJwtToken();
       this.hasValidJwt = true;

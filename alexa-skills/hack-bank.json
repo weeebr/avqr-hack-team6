@@ -1,0 +1,229 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "avaloq bank",
+            "intents": [
+                {
+                    "name": "bfebhgafjciabgecjdc",
+                    "slots": [],
+                    "samples": [
+                        "buy bitcoin",
+                        "buy me bitcoin",
+                        "to buy me bitcoin",
+                        "buy me bitcoins",
+                        "buy bitcoins",
+                        "to buy me bitcoins",
+                        "to buy bitcoins"
+                    ]
+                },
+                {
+                    "name": "bfebhfgdabjbeaicjah",
+                    "slots": [],
+                    "samples": [
+                        "latest stock orders",
+                        "last stock orders",
+                        "latest orders",
+                        "last orders",
+                        "orders",
+                        "my orders",
+                        "my last orders",
+                        "my latest orders",
+                        "my latest trading orders",
+                        "my last trading orders",
+                        "latest trading orders",
+                        "last trading orders"
+                    ]
+                },
+                {
+                    "name": "bfebhffdgjgebgdaebi",
+                    "slots": [
+                        {
+                            "name": "amount",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "buy me some stocks",
+                        "to buy me some stocks",
+                        "buy me some shares",
+                        "to buy me some shares",
+                        "buy shares",
+                        "to buy shares",
+                        "buy me shares",
+                        "to buy me shares",
+                        "buy me shares in Novartis",
+                        "to buy me shares in Novartis",
+                        "buy me stock in Novartis",
+                        "to buy me stock in Novartis",
+                        "buy me Novartis shares",
+                        "to buy me Novartis shares",
+                        "buy me Novartis stock",
+                        "to buy me Novartis stock",
+                        "buy Novartis stock",
+                        "to buy Novartis stock",
+                        "buy Novartis shares",
+                        "to buy Novartis shares"
+                    ]
+                },
+                {
+                    "name": "bfebgjgjhbfaajcejae",
+                    "slots": [],
+                    "samples": [
+                        "buy ferrari",
+                        "buy me a ferrari",
+                        "buy me a new ferrari"
+                    ]
+                },
+                {
+                    "name": "bfebgjgaeahgdahfiic",
+                    "slots": [],
+                    "samples": [
+                        "call advisor",
+                        "call my advisor",
+                        "to call my advisor"
+                    ]
+                },
+                {
+                    "name": "bfebgjfccicejccjged",
+                    "slots": [],
+                    "samples": [
+                        "performance",
+                        "portfolio performance",
+                        "my performance",
+                        "my portfolio performance",
+                        "what is my performance",
+                        "what is my portfolio performance"
+                    ]
+                },
+                {
+                    "name": "bfebgjaeecjhfciddij",
+                    "slots": [],
+                    "samples": [
+                        "portfolio information",
+                        "my portfolio information",
+                        "portfolio",
+                        "my portfolio",
+                        "what is my portfolio information",
+                        "what is my portfolio"
+                    ]
+                },
+                {
+                    "name": "bfebghfhghheebihicf",
+                    "slots": [],
+                    "samples": [
+                        "last transactions",
+                        "latest transactions",
+                        "my last transactions",
+                        "my latest transactions",
+                        "my transactions",
+                        "my transaction",
+                        "transactions",
+                        "transaction"
+                    ]
+                },
+                {
+                    "name": "bfebghdhchbcdjcjjfa",
+                    "slots": [],
+                    "samples": [
+                        "account balance",
+                        "what is my account balance",
+                        "balance",
+                        "my balance",
+                        "my account balance"
+                    ]
+                },
+                {
+                    "name": "CustomHelpIntent",
+                    "slots": [],
+                    "samples": [
+                        "help",
+                        "show help",
+                        "get help",
+                        "help me",
+                        "can you help me"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "bfebhgafjciabgecjdc",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "bfebhfgdabjbeaicjah",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "bfebhffdgjgebgdaebi",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "amount",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Intent-bfebhffdgjgebgdaebi.IntentSlot-amount"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "bfebgjgjhbfaajcejae",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "bfebgjgaeahgdahfiic",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "bfebgjfccicejccjged",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "bfebgjaeecjhfciddij",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "bfebghfhghheebihicf",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "bfebghdhchbcdjcjjfa",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Intent-bfebhffdgjgebgdaebi.IntentSlot-amount",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "How many shares would you like to buy?"
+                    }
+                ]
+            }
+        ]
+    }
+}
